@@ -14,25 +14,20 @@ export class AppComponent implements AfterViewInit{
   context: CanvasRenderingContext2D | undefined | null;
   player: HTMLVideoElement | undefined | null;
   captured: boolean = false;
+  constraints = {
+    video: {
+      facingMode: {
+        exact: 'environment'
+      }
+    }
+  };
 
   ngAfterViewInit() {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
     this.context = this.canvas?.getContext('2d');
     this.player = document.getElementById('player') as HTMLVideoElement;
 
-    const constraints = {
-      video: {
-        facingMode: {
-          exact: 'environment'
-        }
-      }
-    };
-    navigator.mediaDevices.getUserMedia(constraints)
-    .then((stream) => {
-      if (this.player) {
-        this.player.srcObject = stream;
-      }
-    });
+    this.stream();
   }
 
   onFileChange(event: any) {
@@ -62,5 +57,15 @@ export class AppComponent implements AfterViewInit{
 
   cancel() {
     this.captured = false;
+    this.stream();
+  }
+
+  stream() {
+    navigator.mediaDevices.getUserMedia(this.constraints)
+    .then((stream) => {
+      if (this.player) {
+        this.player.srcObject = stream;
+      }
+    });
   }
 }
