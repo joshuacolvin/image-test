@@ -22,16 +22,18 @@ export class AppComponent implements AfterViewInit{
       }
     }
   };
+  initilized: boolean = false;
 
   ngAfterViewInit() {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
     this.context = this.canvas?.getContext('2d');
     this.player = document.getElementById('player') as HTMLVideoElement;
 
-    this.stream();
+    // this.stream();
   }
 
-  launchCamera() {
+  init() {
+    this.initilized = true;
     this.stream();
   }
 

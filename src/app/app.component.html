@@ -1,8 +1,12 @@
 
 <!-- <input type="file" (change)="onFileChange($event)" /> -->
 
-  <video [ngClass]="{'hidden': captured}" id="player" width="375" height="469" autoplay muted playsinline> </video>
-  <button [ngClass]="{'hidden': captured}" (click)="capture()">Capture</button>
+@if (!initilized) {
+  <button (click)="init()">Perform Visual Search</button>
+}
+
+  <video [ngClass]="{'hidden': captured || !initilized}" id="player" width="375" height="469" autoplay muted playsinline> </video>
+  <button [ngClass]="{'hidden': captured || !initilized}" (click)="capture()">Capture</button>
 
   <canvas [ngClass]="{'hidden': !captured}" id="canvas" width=375 height=469></canvas>
   @if (captured) {
