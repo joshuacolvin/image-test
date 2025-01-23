@@ -33,7 +33,6 @@ export class AppComponent implements AfterViewInit{
   }
 
   init() {
-    this.initilized = true;
     this.stream();
   }
 
@@ -73,9 +72,13 @@ export class AppComponent implements AfterViewInit{
   stream() {
     navigator.mediaDevices.getUserMedia(this.constraints)
     .then((stream) => {
+      this.initilized = true;
       if (this.player) {
         this.player.srcObject = stream;
       }
+    }).catch((error) => {
+      this.initilized = false;
+      console.error('Error accessing media devices.', error);
     });
   }
 }
