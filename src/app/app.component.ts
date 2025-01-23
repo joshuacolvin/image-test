@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -27,6 +28,10 @@ export class AppComponent implements AfterViewInit{
     this.context = this.canvas?.getContext('2d');
     this.player = document.getElementById('player') as HTMLVideoElement;
 
+    this.stream();
+  }
+
+  launchCamera() {
     this.stream();
   }
 
