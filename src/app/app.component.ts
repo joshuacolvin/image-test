@@ -48,9 +48,9 @@ export class AppComponent implements AfterViewInit{
   }
 
   capture() {
+    this.captured = true;
     if (this.context && this.player && this.canvas) {
       this.context.drawImage(this.player, 0, 0, this.canvas.width, this.canvas.height);
-      this.captured = true;
     }
 
   }
