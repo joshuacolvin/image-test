@@ -62,6 +62,9 @@ export class AppComponent implements AfterViewInit{
 
   cancel() {
     this.captured = false;
+    if (this.context && this.player && this.canvas) {
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
     this.stream();
   }
 

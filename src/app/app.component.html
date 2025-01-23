@@ -1,11 +1,11 @@
 
-<input type="file" (change)="onFileChange($event)" />
+<!-- <input type="file" (change)="onFileChange($event)" /> -->
 
   <video [ngClass]="{'hidden': captured}" id="player" width="375" height="469" autoplay muted playsinline> </video>
-  <button (click)="capture()">Capture</button>
+  <button [ngClass]="{'hidden': captured}" (click)="capture()">Capture</button>
 @if (captured) {
   <button (click)="cancel()">Cancel</button>
 }
-<canvas id="canvas" width=375 height=469></canvas>
+<canvas [ngClass]="{'hidden': !captured}" id="canvas" width=375 height=469></canvas>
 
 
