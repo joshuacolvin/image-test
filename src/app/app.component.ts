@@ -11,8 +11,9 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent implements AfterViewInit{
   title = 'image-test';
   canvas: HTMLCanvasElement | undefined;
-context: CanvasRenderingContext2D | undefined | null;
-player: HTMLVideoElement | undefined | null;
+  context: CanvasRenderingContext2D | undefined | null;
+  player: HTMLVideoElement | undefined | null;
+  captured: boolean = false;
 
   ngAfterViewInit() {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -54,7 +55,12 @@ player: HTMLVideoElement | undefined | null;
   capture() {
     if (this.context && this.player && this.canvas) {
       this.context.drawImage(this.player, 0, 0, this.canvas.width, this.canvas.height);
+      this.captured = true;
     }
 
+  }
+
+  cancel() {
+    this.captured = false;
   }
 }

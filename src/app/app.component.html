@@ -1,7 +1,11 @@
 <input type="file" (change)="onFileChange($event)" />
 
-<video id="player" autoplay muted playsinline> </video>
+@if (!captured) {
+  <video id="player" autoplay muted playsinline> </video>
+  <button (click)="capture()">Capture</button>
+} @else {
+  <canvas id="canvas" width=375 height=469></canvas>
+  <button (click)="cancel()"></button>
+}
 
-<button (click)="capture()">Capture</button>
 
-<canvas id="canvas" width=320 height=240></canvas>
