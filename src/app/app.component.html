@@ -4,6 +4,10 @@
   <button (click)="init()">Perform Visual Search</button>
 }
 
+<input type="file" (change)="onFileChange($event)" />
+
+{{file | json}}
+
 <video [ngClass]="{'hidden': captured || !initilized}" id="player" width="375" height="469" autoplay muted playsinline> </video>
 <button [ngClass]="{'hidden': captured || !initilized}" (click)="capture()">Capture</button>
 

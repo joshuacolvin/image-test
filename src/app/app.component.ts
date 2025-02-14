@@ -23,6 +23,7 @@ export class AppComponent implements AfterViewInit{
     }
   };
   initilized: boolean = false;
+  public file: any;
 
   ngAfterViewInit() {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -38,7 +39,10 @@ export class AppComponent implements AfterViewInit{
 
   onFileChange(event: any) {
     const file = event.target.files[0];
+
     if (file) {
+      console.log('***** FILE: ', file)
+      this.file = file;
       const reader = new FileReader();
       reader.onload = (e) => {
         const img = new Image();
@@ -57,6 +61,7 @@ export class AppComponent implements AfterViewInit{
     this.captured = true;
     if (this.context && this.player && this.canvas) {
       this.context.drawImage(this.player, 0, 0, this.canvas.width, this.canvas.height);
+      this.context.rect(0, 0, this.canvas.width, this.canvas.height);
     }
 
   }
